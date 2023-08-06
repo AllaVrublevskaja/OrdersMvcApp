@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OrdersMvcApp_Java225</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <h1>Обновить товар</h1>
+
+    <!-- форма обновления товара -->
+    <form method="post" th:action="@{/product/update}" th:object="${product}">
+        <label for="hidden-id"></label>
+        <input th:field="*{id}" id="hidden-id" type="number" hidden/>
+
+        <label for="input-name">Имя:</label>
+        <input th:field="*{name}" id="input-name" type="text" required minlength="1"/>
+
+        <label for="input-article">Артикул:</label>
+        <input th:field="*{article}" id="input-article" type="text"/>
+
+        <label for="input-price">Артикул:</label>
+        <input th:field="*{price}" id="input-price" type="text"/>
+
+        <button class="btn btn-success">Сохранить</button>
+        <a class="btn btn-danger" th:href="@{/product}">Отменить</a>
+    </form>
+
+    <h3>
+        <!-- ссылка на домашнюю страницу -->
+        <a class="btn btn-success" th:href="@{/}"> На домашнюю </a>
+    </h3>
+</div>
+</body>
+</html>
