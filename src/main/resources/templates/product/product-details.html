@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OrdersMvcApp_Java225</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <h1>Товар:</h1>
+    <div>
+    <table class="table table-bordered">
+        <thead class="table-info">
+        <tr>
+            <th>Название</th>
+            <th>Артикул</th>
+            <th>Стоимость</th>
+        </tr>
+        <tbody class="table-light">
+            <tr th:each="orderProduct: ${orderProducts}">
+                <td>[[${orderProduct.product.name}]]</td>
+                <td>[[${orderProduct.product.article}]]</td>
+                <td>[[${orderProduct.product.price}]]</td>
+            </tr>
+        </tbody>
+        </thead>
+    </table>
+    </div>
+    <div>
+        <h3>Заказы товара</h3>
+        <table class = "table table-bordered">
+            <thead class="table-info">
+                <tr>
+                    <th>Описани</th>
+                    <th>Заказчик</th>
+                    <th>email</th>
+                    <th>Количество товара</th>
+                </tr>
+            </thead>
+            <tbody class="table-light">
+                <tr th:each="orderProduct: ${orderProducts}">
+                    <td>[[${orderProduct.order.description}]]</td>
+                    <td>[[${orderProduct.order.client.name}]]</td>
+                    <td>[[${orderProduct.order.client.email}]]</td>
+                    <td>[[${orderProduct.count}]]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h4>
+        <a class = "btn btn-success" th:href="@{/product}">Назад к товарам</a>
+    </h4>
+</div>
+</body>
+</html>

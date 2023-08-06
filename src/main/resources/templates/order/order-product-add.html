@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OrdersMvcApp_Java225</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <h1>Добавить товар в заказ</h1>
+    <form method="post" th:action="@{/order/new-product}" th:object="${orderProduct}" >
+    <table class="table table-bordered">
+        <thead class="table table-info">
+        <tr>
+            <td>Описание</td>
+            <td>Клиент</td>
+        </tr>
+        </thead>
+        <tbody class="table-light">
+        <tr>
+            <td>[[${order.description}]]</td>
+            <td>[[${client.name}]]</td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <h3>Введите новый товар в заказ: </h3>
+        <table class="table table-bordered">
+            <thead class="table table-info">
+            <tr>
+                <th>Выберите товар</th>
+                <th>Id</th>
+                <th>Количество</th>
+                <th>Действие</th>
+            </tr>
+            </thead>
+            <tbody class="table-light">
+            <tr>
+                <td>
+                    <!-- клиент -->
+                    <select id="input-productId" th:field="*{product}">
+                        <option th:each="product: ${products}" th:value="${product.id}">
+                            [[${product.name}]]
+                            [[${product.article}]]
+                            [[${product.price}]]
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <!-- клиент -->
+                    <select id="input-orderId" th:field="*{order}">
+                        <option th:each="order: ${order}" th:value="${order.id}">
+                            [[${order.id}]]
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <input th:field="*{count}" id="input-count" type="number" required min=1/>
+                </td>
+                <td>
+                    <button class="btn btn-success">Сохранить</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <a class="btn btn-info" th:href="@{'/order/update/'+${order.id}}">Назад к заказу</a>
+        <a class="btn btn-success" th:href="@{/}"> На домашнюю </a>
+    </form>
+</div>
+</body>
+</html>

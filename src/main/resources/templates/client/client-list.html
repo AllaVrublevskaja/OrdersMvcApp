@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>OrdersMvcApp_Java225</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+  <h1>Клиенты</h1>
+
+  <!-- блок вывод сообщения -->
+  <p th:if="${msg != null}" th:class="${msg_style}">
+    [[${msg}]]
+  </p>
+
+  <!-- вывести список объектов в виде таблицы -->
+  <table class="table table-bordered">
+    <!-- шапка таблицы -->
+    <thead class="table table-info">
+       <tr>
+         <th>ID</th>
+         <th>Имя</th>
+         <th>Email</th>
+         <th>Действия</th>
+       </tr>
+    </thead>
+    <!-- тело таблицы -->
+    <tbody class="table-light">
+    <tr th:each="client: ${clients}">
+      <td>[[${client.id}]]</td>
+      <td>
+        <a th:href="@{'/client/details/' + ${client.id}}"> [[${client.name}]] </a>
+      </td>
+      <td>[[${client.email}]]</td>
+      <td>
+        <a th:href="@{'/order/new/' + ${client.id}}" class="btn btn-success"> + заказ </a>
+        <a th:href="@{'/client/delete/' + ${client.id}}" class="btn btn-danger"> Удалить </a>
+        <a th:href="@{'/client/update/' + ${client.id}}" class="btn btn-info"> Обновить </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h4>
+    <!-- ссылка на добавление клиента -->
+    <a th:href="@{/client/new}" class="btn btn-success"> Добавить клиента </a>
+    <!-- ссылка на домашнюю страницу -->
+    <a class="btn btn-success" th:href="@{/}"> На домашнюю </a>
+  </h4>
+</div>
+</body>
+</html>
